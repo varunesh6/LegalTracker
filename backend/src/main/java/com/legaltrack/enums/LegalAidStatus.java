@@ -1,0 +1,16 @@
+package com.legaltrack.enums;
+
+public enum LegalAidStatus {
+    DRAFT,
+    SUBMITTED,
+    DOCUMENTS_PENDING,
+    UNDER_REVIEW,
+    ELIGIBILITY_VERIFICATION,
+    APPROVED,
+    REJECTED,
+    MORE_INFORMATION_REQUIRED,
+    LAWYER_ASSIGNMENT_PENDING,
+    LAWYER_ASSIGNED,
+    CASE_CREATED,
+    CLOSED
+}
