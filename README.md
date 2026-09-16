@@ -47,9 +47,9 @@
 
 | Layer | Technologies |
 | :--- | :--- |
-| **Backend** | Java 17, Spring Boot 3.2.4, Spring Data JPA, Spring Security (JWT + RBAC), Jakarta Validation, Swagger OpenAPI, WebSocket STOMP |
+| **Backend** | Java 17, Spring Boot 3.2.4, Spring Data JPA Repositories, Spring Security (JWT + RBAC), Jakarta Validation, Swagger OpenAPI, WebSocket STOMP |
 | **Frontend** | React 18, Vite, Axios, React Router v6, Lucide React, Pure Vanilla CSS (Glassmorphism design system) |
-| **Database & Persistence** | MySQL 8 (database `legaltrack`) + In-Memory H2 test profile + Programmatic `DataInitializer` seed engine |
+| **Database & Persistence** | PostgreSQL / Embedded H2 / MySQL + Spring Data JPA Repositories + Programmatic `DataInitializer` seed engine |
 | **Testing** | JUnit 5, Mockito, Spring Boot Test |
 
 ---
@@ -73,12 +73,21 @@ All seeded accounts have the default password: `password123`
 ### 1. Prerequisites
 * **Java 17 JDK** installed and configured in `JAVA_HOME`.
 * **Node.js (v18+)** and `npm`.
-* **MySQL 8** running locally on port `3306` (or use H2 test profile).
+* **PostgreSQL** (or zero-config embedded persistence mode).
 
-### 2. Database Setup
-Create the MySQL database:
-```sql
-CREATE DATABASE IF NOT EXISTS legaltrack CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+### 2. Database Configuration
+Spring Data JPA automatically creates and maintains all 41 entity tables and relationships via Hibernate `ddl-auto=update`.
+
+To run with **PostgreSQL**:
+```properties
+# in application.properties or .env
+DB_URL=jdbc:postgresql://localhost:5432/legaltrack
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+```
+Or start with the dedicated profile:
+```bash
+mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=postgres
 ```
 
 ### 3. Running the Backend

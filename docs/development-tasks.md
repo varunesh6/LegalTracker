@@ -10,10 +10,10 @@ This document tracks implementation progress across all 22 phases of the **LEGAL
   - [x] Backend Maven structure & `pom.xml` configuration with Spring Boot 3, Security, Data JPA, MySQL, Swagger
   - [x] Frontend React + Vite + Vanilla CSS design setup & npm dependencies installation
   - [x] `application.properties` & test configuration
-- [x] **Phase 2: Database Foundation**
-  - [x] Complete normalized MySQL 8 schema (`database/schema.sql`)
-  - [x] Academic seed dataset with demo cases (`DEMO123456`), lawyers, hearings, orders, diary (`database/data.sql`)
-  - [x] ER diagram and entity relation documentation (`database/er-diagram.md`)
+- [x] **Phase 2: Database Foundation & Spring Data JPA Repositories**
+  - [x] Spring Data JPA entity model architecture with Hibernate automated DDL schema management
+  - [x] PostgreSQL database driver & multi-database support (PostgreSQL / Embedded H2 / MySQL)
+  - [x] Academic seed dataset with demo cases (`DEMO123456`), lawyers, hearings, orders, diary (`DataInitializer.java`)
 - [x] **Phase 3: Java Entities, Enums & JPA Repositories**
   - [x] 41 JPA entity models with relational mappings, `@Version`, `@CreatedDate`, `@LastModifiedDate`
   - [x] 26 domain enums for statuses, types, roles, severities, and visibilities

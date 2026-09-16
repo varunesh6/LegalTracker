@@ -23,7 +23,7 @@ LEGALTRACK is designed as a layered, modular, and secure enterprise application 
 [ Data Access Layer (40 Spring Data JPA Repositories) ]
                 |
                 v
-[ MySQL 8 Persistence Layer (41 Entities + Automated Auditing) ]
+[ Persistence Layer (PostgreSQL / Embedded H2 / MySQL with 41 JPA Entities + Hibernate DDL) ]
 ```
 
 ---
