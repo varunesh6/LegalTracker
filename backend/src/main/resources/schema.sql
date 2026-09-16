@@ -1,0 +1,1 @@
+-- Optional schema.sql for direct database initialization if needed
