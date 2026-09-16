@@ -14,23 +14,65 @@ This document tracks implementation progress across all 22 phases of the **LEGAL
   - [x] Complete normalized MySQL 8 schema (`database/schema.sql`)
   - [x] Academic seed dataset with demo cases (`DEMO123456`), lawyers, hearings, orders, diary (`database/data.sql`)
   - [x] ER diagram and entity relation documentation (`database/er-diagram.md`)
-- [ ] **Phase 3: Java Entities, Enums & JPA Repositories**
-- [ ] **Phase 4: Security, JWT & Authentication APIs**
-- [ ] **Phase 5: Lawyer Discovery & Availability Module**
-- [ ] **Phase 6: Court Directory & Metadata Management**
-- [ ] **Phase 7: Lawyer Requests & Client-Lawyer Relationships**
-- [ ] **Phase 8: Case Management & Domain Services**
-- [ ] **Phase 9: Existing Case Tracking (CNR, Case Number, FIR) & Saved Cases**
-- [ ] **Phase 10: Case Timeline & Dynamic Case Diary**
-- [ ] **Phase 11: Hearing & Order Management**
-- [ ] **Phase 12: Case Attention Dashboard & Rule Engine**
-- [ ] **Phase 13: Mock Court Provider & Automated Synchronization**
-- [ ] **Phase 14: Legal-Aid Assistance & Verification Module**
-- [ ] **Phase 15: Secure Document Management & Versioning**
-- [ ] **Phase 16: Client-Lawyer Chat (REST + WebSocket)**
-- [ ] **Phase 17: Notification System & Schedulers**
-- [ ] **Phase 18: Customer Support System**
-- [ ] **Phase 19: Audit Logging System**
-- [ ] **Phase 20: React Frontend Components, Dashboards & Workspaces**
-- [ ] **Phase 21: Automated Testing Suite & Security Isolation Verification**
-- [ ] **Phase 22: OpenAPI/Swagger Documentation, System Guides & Release Documentation**
+- [x] **Phase 3: Java Entities, Enums & JPA Repositories**
+  - [x] 41 JPA entity models with relational mappings, `@Version`, `@CreatedDate`, `@LastModifiedDate`
+  - [x] 26 domain enums for statuses, types, roles, severities, and visibilities
+  - [x] 40 Spring Data JPA repositories with custom derived and JPQL queries
+- [x] **Phase 4: Security, JWT & Authentication APIs**
+  - [x] Stateless JWT authentication filter & token provider with refresh token rotation
+  - [x] BCrypt password hashing & Spring Security filter chain with fine-grained RBAC
+  - [x] AuthController endpoints (`/api/auth/register/client`, `/api/auth/register/lawyer`, `/api/auth/login`, `/api/auth/refresh`, `/api/auth/me`)
+- [x] **Phase 5: Lawyer Discovery & Availability Module**
+  - [x] Multi-parameter advocate search (District, Court, Specialization, Language, Experience, Availability)
+  - [x] Real-time availability status management (`ACCEPTING_CLIENTS`, `BUSY`, etc.)
+  - [x] Public and detailed lawyer profile endpoints
+- [x] **Phase 6: Court Directory & Metadata Management**
+  - [x] State, District, Court Complex, Court, Police Station, and Case Type master endpoints
+  - [x] Administrative endpoints for metadata creation and maintenance
+- [x] **Phase 7: Lawyer Requests & Client-Lawyer Relationships**
+  - [x] Formal client inquiry submission with case category and matter summary
+  - [x] Advocate acceptance/rejection flow creating active legal representation relationships
+- [x] **Phase 8: Case Management & Domain Services**
+  - [x] Unified `CaseFile` service layer with party, advocate, stage, and metadata management
+  - [x] Stage progression tracking across 9 procedural litigation phases
+- [x] **Phase 9: Existing Case Tracking (CNR, Case Number, FIR) & Saved Cases**
+  - [x] Multi-criteria case lookup (16-character CNR, Court + Case Number, Police Station + FIR)
+  - [x] User-specific saved/tracked case registry with custom nicknames and notification switches
+- [x] **Phase 10: Case Timeline & Dynamic Case Diary**
+  - [x] Chronological procedural timeline generation
+  - [x] Immutable Case Diary stream with creator attribution and visibility controls (`SHARED`, `LAWYER_ONLY`, `CLIENT_PRIVATE`)
+- [x] **Phase 11: Hearing & Order Management**
+  - [x] Hearing scheduling, stage logging, judge designation, and adjournment tracking
+  - [x] Case order archival with categorization (`INTERIM_ORDER`, `PROCEDURAL_ORDER`, `FINAL_JUDGMENT`)
+- [x] **Phase 12: Case Attention Dashboard & Rule Engine**
+  - [x] Automated evaluator for upcoming hearings (7, 3, 1 days), pending document requests, and new orders
+  - [x] Severity categorization (`ACTION_REQUIRED`, `WARNING`, `INFO`) and resolution tracking
+- [x] **Phase 13: Mock Court Provider & Automated Synchronization**
+  - [x] `CourtDataProvider` interface and `MockCourtDataProvider` implementation
+  - [x] Automated synchronization routines with change detection and sync logs
+- [x] **Phase 14: Legal-Aid Assistance & Verification Module**
+  - [x] 3-step statutory eligibility calculator based on Section 12 criteria
+  - [x] Full application lifecycle (`SUBMITTED` &rarr; `UNDER_REVIEW` &rarr; `VERIFIED` &rarr; `LAWYER_ASSIGNED`)
+  - [x] Dedicated DLSA Legal Aid Officer desk for review and advocate panel assignment
+- [x] **Phase 15: Secure Document Management & Versioning**
+  - [x] Multi-category document exchange with local storage provider abstraction
+  - [x] Automatic document version incrementing (`v1`, `v2`, `v3`) and MIME/extension validation
+- [x] **Phase 16: Client-Lawyer Chat (REST + WebSocket)**
+  - [x] One-to-one messaging channel linked to case context
+  - [x] Authorization checks ensuring strict communication privacy
+- [x] **Phase 17: Notification System & Schedulers**
+  - [x] Background schedulers for hearing reminders and case synchronization
+  - [x] Real-time in-app notification badges and mark-as-read endpoints
+- [x] **Phase 18: Customer Support System**
+  - [x] Support ticket creation, categorized queuing, and conversational messaging
+- [x] **Phase 19: Audit Logging System**
+  - [x] Immutable audit trail logging actor user, action type, IP address, and timestamp
+- [x] **Phase 20: React Frontend Components, Dashboards & Workspaces**
+  - [x] Responsive Glassmorphic design system using pure Vanilla CSS
+  - [x] Complete role-based workspaces for Client, Advocate, Legal Aid Officer, and Admin
+  - [x] Comprehensive Case Workspace with interactive tabs (Timeline, Diary, Attention, Hearings, Orders, Documents, Chat)
+- [x] **Phase 21: Automated Testing Suite & Security Isolation Verification**
+  - [x] JUnit 5 & Mockito test suites covering AuthService, CaseService, LegalAidService, and TrackedCaseService
+- [x] **Phase 22: OpenAPI/Swagger Documentation, System Guides & Release Documentation**
+  - [x] Interactive OpenAPI 3 / Swagger documentation at `/swagger-ui.html`
+  - [x] Comprehensive Architecture, Workflows, Project Report, and README documentation

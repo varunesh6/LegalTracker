@@ -34,3 +34,10 @@ Thumbs.db
 # Uploaded Files
 backend/uploads/
 uploads/
+
+# Embedded Database Data
+backend/data/
+data/
+*.mv.db
+*.trace.db
+

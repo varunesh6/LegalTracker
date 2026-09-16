@@ -24,7 +24,6 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationService notificationService;
-    private final SecurityUtils securityUtils;
 
     @GetMapping
     @PreAuthorize("isAuthenticated()")
@@ -32,7 +31,7 @@ public class NotificationController {
     public ResponseEntity<ApiResponse<PagedResponse<NotificationDto>>> getMyNotifications(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "15") int size) {
-        Long currentUserId = securityUtils.getCurrentUserId();
+        Long currentUserId = SecurityUtils.getCurrentUserId();
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
         PagedResponse<NotificationDto> response = notificationService.getUserNotifications(currentUserId, pageable);
         return ResponseEntity.ok(ApiResponse.success(response));
@@ -42,7 +41,7 @@ public class NotificationController {
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get unread notifications list")
     public ResponseEntity<ApiResponse<List<NotificationDto>>> getUnreadNotifications() {
-        Long currentUserId = securityUtils.getCurrentUserId();
+        Long currentUserId = SecurityUtils.getCurrentUserId();
         List<NotificationDto> notifications = notificationService.getUnreadNotifications(currentUserId);
         return ResponseEntity.ok(ApiResponse.success(notifications));
     }
@@ -51,7 +50,7 @@ public class NotificationController {
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Get unread notification count badge")
     public ResponseEntity<ApiResponse<Long>> getUnreadCount() {
-        Long currentUserId = securityUtils.getCurrentUserId();
+        Long currentUserId = SecurityUtils.getCurrentUserId();
         Long count = notificationService.getUnreadCount(currentUserId);
         return ResponseEntity.ok(ApiResponse.success(count));
     }
@@ -60,7 +59,7 @@ public class NotificationController {
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Mark a notification as read")
     public ResponseEntity<ApiResponse<Void>> markAsRead(@PathVariable Long notificationId) {
-        Long currentUserId = securityUtils.getCurrentUserId();
+        Long currentUserId = SecurityUtils.getCurrentUserId();
         notificationService.markAsRead(notificationId, currentUserId);
         return ResponseEntity.ok(ApiResponse.success("Marked as read", null));
     }
@@ -69,7 +68,7 @@ public class NotificationController {
     @PreAuthorize("isAuthenticated()")
     @Operation(summary = "Mark all notifications as read")
     public ResponseEntity<ApiResponse<Void>> markAllAsRead() {
-        Long currentUserId = securityUtils.getCurrentUserId();
+        Long currentUserId = SecurityUtils.getCurrentUserId();
         notificationService.markAllAsRead(currentUserId);
         return ResponseEntity.ok(ApiResponse.success("All notifications marked as read", null));
     }
